@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'POKEMON XTREM BATTLE SIMULATOR';
+  title = 'POKEMON XTREM BATTLE SIMULATOR 3000';
 }
