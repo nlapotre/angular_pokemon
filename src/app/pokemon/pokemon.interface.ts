@@ -1,9 +1,9 @@
-import PokemonComponent from './pokemon.component';
+import { Pokemon } from './pokemon';
 
 export default interface PokemonInterface {
-  attack(adversary: PokemonComponent): void;
+  attack(adversary: Pokemon): void;
   gainXp(amount: number): void;
   isKo(): boolean;
   lvlUp(): void;
-  getFastest(opponent: PokemonComponent): boolean;
+  isFastest(opponent: Pokemon): boolean;
 }
