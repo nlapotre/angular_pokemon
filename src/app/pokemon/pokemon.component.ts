@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.css']
 })
-export default class PokemonComponent implements OnInit {
+export class PokemonComponent implements OnInit {
   public atk;
   public lvl;
   public hp;

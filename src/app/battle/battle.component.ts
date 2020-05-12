@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PokemonComponent } from '../pokemon/pokemon.component';
 
 @Component({
   selector: 'app-battle',
@@ -6,27 +7,58 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./battle.component.css']
 })
 export class BattleComponent implements OnInit {
-  public first;
-  public second;
-
-  constructor() { }
+  public firstPokemon: PokemonComponent;
+  public secondPokemon: PokemonComponent;
+  public winner = null; 
+  
+  constructor(firstPokemon: PokemonComponent, secondPokemon: PokemonComponent) { 
+    this.firstPokemon = firstPokemon;
+    this.secondPokemon = secondPokemon;
+  }
 
   ngOnInit(): void {
   }
 
 
-  public getFastest(random = Math.random()): PokemonComponent {
-    if (this.first.isFastest(this.second)) {
-      return this.first;
-    } else if (this.second.isFastest(this.first)) {
-      return this.second;
+  public getFastest(random = Math.random): PokemonComponent {
+    if (this.firstPokemon.isFastest(this.secondPokemon)) {
+      return this.firstPokemon;
+    } else if (this.secondPokemon.isFastest(this.firstPokemon)) {
+      return this.secondPokemon;
     } else {
-      if (random() % 2 === 1) {
-        return this.first;
+      if (Math.round(random()) % 2 === 1) {
+        return this.firstPokemon;
       }
-      return this.second;
+      return this.secondPokemon;
     }
   }
-  // setInterval(function(){ alert("Hello"); }, 3000);
+
+  round(): void{
+    const attacker = this.getFastest();
+    const defender = attacker===this.firstPokemon ? this.secondPokemon : this.firstPokemon;
+
+    setInterval(function(){ attacker.attack(defender); }, 1000);
+    if(defender.isKo()){
+      this.winner = attacker;
+      return;
+    }
+
+    setInterval(function(){ defender.attack(attacker); }, 1000);
+    if(attacker.isKo()){
+      this.winner = defender;
+      return;
+    }
+  }
+  
+  letTheBattleBeginAndFinish(): void{
+    console.log("The battle between "+this.firstPokemon.name+" and "+this.secondPokemon.name+" begin !\n")
+    
+    while(this.winner === null){
+        this.round();
+    }
+
+    console.log("And the winner is ..."); 
+    console.log(this.winner.name);
+}
 
 }
