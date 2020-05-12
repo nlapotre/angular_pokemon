@@ -11,13 +11,13 @@ import { Battle } from './battle';
 export class BattleComponent implements OnInit {
   @Input() battle;
 
-  constructor (){
-    let pikachu = new Pokemon("PIKAPIKA", 10);
-    let ronflex = new Pokemon("Ronron", 0);
+  constructor(){
+    const pikachu = new Pokemon('PIKAPIKA', 10);
+    const ronflex = new Pokemon('Ronron', 100);
     this.battle = new Battle(pikachu, ronflex);
   }
 
   ngOnInit(){
-    
+    this.battle.letTheBattleBeginAndFinish();
   }
 }

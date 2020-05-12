@@ -1,2 +1,5 @@
 <p>battle works!</p>
 <p>{{ battle.firstPokemon.name }} VS {{battle.secondPokemon.name}} </p>
+<ul>
+  <li *ngFor="let message of battle.messageList">{{ message }}</li>
+</ul>

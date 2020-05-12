@@ -24,12 +24,11 @@ export class Pokemon implements PokemonInterface {
     ngOnInit(): void {
     }
 
-    attack(opponent: Pokemon): void {
+    attack(opponent: Pokemon): string {
 
         opponent.hp -= this.atk;
 
-        console.log(this.name + ' uses his basic attack !');
-        console.log(opponent.name + ' now has ' + opponent.hp + ' hp.');
+        return this.name + ' uses his basic attack ! ' + opponent.name + ' now has ' + opponent.hp + ' hp.';
     }
 
     gainXp(amount: number): void {
