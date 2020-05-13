@@ -1,19 +1,17 @@
 import { Pokemon } from '../pokemon/pokemon';
+import { Injectable } from '@angular/core';
 
-export class Battle {
+@Injectable()
+export class BattleService {
   public firstPokemon: Pokemon;
   public secondPokemon: Pokemon;
   public winner = null;
   public messageList: string[] = [];
   public isPaused = true;
 
-  constructor(firstPokemon: Pokemon, secondPokemon: Pokemon) {
-    this.firstPokemon = firstPokemon;
-    this.secondPokemon = secondPokemon;
-  }
-
+  
   public getFastest(random = Math.random): Pokemon {
-    if (this.firstPokemon.isFastest(this.secondPokemon)) {
+    if (pokemonService.isFastest(this.firstPokemon, this.secondPokemon)) {
       return this.firstPokemon;
     } else if (this.secondPokemon.isFastest(this.firstPokemon)) {
       return this.secondPokemon;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
-import { Battle } from './battle';
+import { BattleService } from './battle.service';
 
 @Component({
   selector: 'app-battle',
@@ -14,7 +14,7 @@ export class BattleComponent implements OnInit {
   constructor(){
     const pikachu = new Pokemon('pikachu', 10);
     const ronflex = new Pokemon('ronflex', 100);
-    this.battle = new Battle(pikachu, ronflex);
+    this.battle = new BattleService(pikachu, ronflex);
   }
 
   ngOnInit(){

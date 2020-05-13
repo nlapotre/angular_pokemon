@@ -1,7 +1,5 @@
-import PokemonInterface from './pokemon.interface';
-import {environment} from '../../environments/environment';
 
-export class Pokemon implements PokemonInterface {
+export class Pokemon {
     public atk;
     public lvl;
     public hp;
@@ -22,38 +20,5 @@ export class Pokemon implements PokemonInterface {
         this.xpMax = 10;
     }
 
-    attack(opponent: Pokemon): string {
-
-        opponent.hp -= this.atk;
-
-        return this.name + ' uses his basic attack ! ' + opponent.name + ' now has ' + opponent.hp + ' hp.';
-    }
-
-  getImage(back: boolean): string {
-      return environment.image_path + this.name + (back ? '_dos' : '') + '.png';
-    }
-
-    gainXp(amount: number): void {
-        this.xp += amount;
-
-        if (this.xp > this.xpMax) {
-            this.lvlUp();
-        }
-    }
-
-    isKo(): boolean {
-        return this.hp <= 0;
-    }
-
-    lvlUp(): void {
-        this.lvl += 1;
-        this.hp += 10;
-        this.xpMax *= 2;
-        this.speed += 3;
-    }
-
-    public isFastest(opponent: Pokemon): boolean {
-        return this.speed > opponent.speed;
-    }
-
+    
 }
