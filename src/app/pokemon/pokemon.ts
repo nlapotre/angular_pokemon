@@ -14,7 +14,7 @@ export class Pokemon implements PokemonInterface {
         this.name = name;
         this.speed = speed;
         this.atk = 5;
-        this.hp = 10;
+        this.hp = 100;
         this.hpMax = this.hp;
         this.lvl = 1;
         this.xp = 0;

@@ -1,5 +1,7 @@
 <p>battle works!</p>
 <p>{{ battle.firstPokemon.name }} VS {{battle.secondPokemon.name}} </p>
+<button mat-button (click)="pauseGame()">{{ this.battle.isPaused == true ? 'START' : 'PAUSE' }}</button>
+
 <ul>
   <li *ngFor="let message of battle.messageList">{{ message }}</li>
 </ul>

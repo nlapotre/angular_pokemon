@@ -20,4 +20,10 @@ export class BattleComponent implements OnInit {
   ngOnInit(){
     this.battle.letTheBattleBeginAndFinish();
   }
+
+  pauseGame(){
+    console.log(this.battle.isPaused)
+    this.battle.isPaused = !this.battle.isPaused;
+    console.log(this.battle.isPaused)
+  }
 }

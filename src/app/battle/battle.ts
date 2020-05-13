@@ -6,6 +6,7 @@ export class Battle {
   public secondPokemon: Pokemon;
   public winner = null;
   public messageList: string[] = [];
+  public isPaused: boolean= true;
 
   constructor(firstPokemon: Pokemon, secondPokemon: Pokemon) {
     this.firstPokemon = firstPokemon;
@@ -29,20 +30,23 @@ export class Battle {
   }
 
   round(): void{
-    const attacker = this.getFastest();
-    const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
+
 
     setTimeout(() => {
-      this.messageList.push(attacker.attack(defender));
-      if (defender.isKo()){
-        this.displayWinner(attacker);
-        return;
-      }
-  
-      this.messageList.push(defender.attack(attacker));
-      if (attacker.isKo()){
-        this.displayWinner(defender);
-        return;
+      if(!this.isPaused){
+        const attacker = this.getFastest();
+        const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
+        this.messageList.push(attacker.attack(defender));
+        if (defender.isKo()){
+          this.displayWinner(attacker);
+          return;
+        }
+    
+        this.messageList.push(defender.attack(attacker));
+        if (attacker.isKo()){
+          this.displayWinner(defender);
+          return;
+        }
       }
       this.round();
     }, 1000);
@@ -54,8 +58,10 @@ export class Battle {
     this.messageList.push(this.winner.name);
   }
 
+
+
   letTheBattleBeginAndFinish(): void{
-    this.messageList.push('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begin !\n');
+    this.messageList.push('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begins !\n');
 
     this.round();
 
