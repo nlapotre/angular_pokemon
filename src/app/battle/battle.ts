@@ -1,4 +1,5 @@
 import { Pokemon } from '../pokemon/pokemon';
+import { $ } from 'protractor';
 
 export class Battle {
   public firstPokemon: Pokemon;
@@ -31,32 +32,33 @@ export class Battle {
     const attacker = this.getFastest();
     const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
 
-    // setInterval(() => {
+    setTimeout(() => {
       this.messageList.push(attacker.attack(defender));
-      // }, 1000);
-    if (defender.isKo()){
-      this.winner = attacker;
-      return;
-    }
-
-    // setInterval(() => {
+      if (defender.isKo()){
+        this.displayWinner(attacker);
+        return;
+      }
+  
       this.messageList.push(defender.attack(attacker));
-      // }, 1000);
-    if (attacker.isKo()){
-      this.winner = defender;
-      return;
-    }
+      if (attacker.isKo()){
+        this.displayWinner(defender);
+        return;
+      }
+      this.round();
+    }, 1000);
+  }
+
+  displayWinner(theWinner: Pokemon){
+    this.winner = theWinner;
+    this.messageList.push('And the winner is ...');
+    this.messageList.push(this.winner.name);
   }
 
   letTheBattleBeginAndFinish(): void{
     this.messageList.push('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begin !\n');
 
-    while (this.winner === null){
-        this.round();
-    }
+    this.round();
 
-    this.messageList.push('And the winner is ...');
-    this.messageList.push(this.winner.name);
-}
+  }
 
 }
