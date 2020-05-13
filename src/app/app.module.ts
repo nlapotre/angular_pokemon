@@ -6,19 +6,23 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 import { BattleComponent } from './battle/battle.component';
 import { PokemonService } from './pokemon/pokemon.service';
 import { BattleService } from './battle/battle.service';
+import { BattleLogComponent } from './battle-log/battle-log.component';
+import { BattleLogService } from './battle-log/battle-log.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonComponent,
-    BattleComponent
+    BattleComponent,
+    BattleLogComponent
   ],
   imports: [
     BrowserModule
   ],
   providers: [
     PokemonService,
-    BattleService
+    BattleService,
+    BattleLogService
   ],
   bootstrap: [AppComponent]
 })

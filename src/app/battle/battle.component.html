@@ -3,7 +3,5 @@
 
 <p>{{ battleService.firstPokemon.name }} VS {{ battleService.secondPokemon.name }}</p>
 <button mat-button (click)="pauseGame()">{{ battleService.isPaused == true ? 'START' : 'PAUSE' }}</button>
-
-<ul>
-  <li *ngFor="let message of battleService.messageList">{{ message }}</li>
-</ul>
+<p>{{ dateStartBattle | date:'medium' }}</p>
+<app-battle-log></app-battle-log>

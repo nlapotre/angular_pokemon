@@ -9,6 +9,7 @@ export class BattleService {
   public winner = null;
   public messageList: string[] = [];
   public isPaused = true;
+  public isStarted = false;
 
   constructor(private pokemonService: PokemonService) {
     this.firstPokemon = new Pokemon('tortank', 10);
@@ -29,7 +30,7 @@ export class BattleService {
   }
 
   round(): void{
-
+    
     setTimeout(() => {
       if (this.isPaused) {
         this.round();
