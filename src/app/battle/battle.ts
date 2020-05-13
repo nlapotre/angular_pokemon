@@ -1,12 +1,11 @@
 import { Pokemon } from '../pokemon/pokemon';
-import { $ } from 'protractor';
 
 export class Battle {
   public firstPokemon: Pokemon;
   public secondPokemon: Pokemon;
   public winner = null;
   public messageList: string[] = [];
-  public isPaused: boolean = true;
+  public isPaused = true;
 
   constructor(firstPokemon: Pokemon, secondPokemon: Pokemon) {
     this.firstPokemon = firstPokemon;
@@ -28,23 +27,26 @@ export class Battle {
 
   round(): void{
 
-
     setTimeout(() => {
-      if (!this.isPaused){
-        const attacker = this.getFastest();
-        const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
-        this.messageList.push(attacker.attack(defender));
-        if (defender.isKo()){
-          this.displayWinner(attacker);
-          return;
-        }
-
-        this.messageList.push(defender.attack(attacker));
-        if (attacker.isKo()){
-          this.displayWinner(defender);
-          return;
-        }
+      if (this.isPaused) {
+        this.round();
+        return;
       }
+
+      const attacker = this.getFastest();
+      const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
+      this.messageList.push(attacker.attack(defender));
+      if (defender.isKo()){
+        this.displayWinner(attacker);
+        return;
+      }
+
+      this.messageList.push(defender.attack(attacker));
+      if (attacker.isKo()){
+        this.displayWinner(defender);
+        return;
+      }
+
       this.round();
     }, 1000);
   }
