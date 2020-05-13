@@ -6,7 +6,7 @@ export class Battle {
   public secondPokemon: Pokemon;
   public winner = null;
   public messageList: string[] = [];
-  public isPaused: boolean= true;
+  public isPaused: boolean = true;
 
   constructor(firstPokemon: Pokemon, secondPokemon: Pokemon) {
     this.firstPokemon = firstPokemon;
@@ -41,7 +41,7 @@ export class Battle {
           this.displayWinner(attacker);
           return;
         }
-    
+
         this.messageList.push(defender.attack(attacker));
         if (attacker.isKo()){
           this.displayWinner(defender);

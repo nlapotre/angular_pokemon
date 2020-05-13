@@ -12,8 +12,8 @@ export class BattleComponent implements OnInit {
   @Input() battle;
 
   constructor(){
-    const pikachu = new Pokemon('PIKAPIKA', 10);
-    const ronflex = new Pokemon('Ronron', 100);
+    const pikachu = new Pokemon('pikachu', 10);
+    const ronflex = new Pokemon('ronflex', 100);
     this.battle = new Battle(pikachu, ronflex);
   }
 

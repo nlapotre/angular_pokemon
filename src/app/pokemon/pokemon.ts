@@ -1,4 +1,5 @@
 import PokemonInterface from './pokemon.interface';
+import {environment} from '../../environments/environment';
 
 export class Pokemon implements PokemonInterface {
     public atk;
@@ -21,14 +22,15 @@ export class Pokemon implements PokemonInterface {
         this.xpMax = 10;
     }
 
-    ngOnInit(): void {
-    }
-
     attack(opponent: Pokemon): string {
 
         opponent.hp -= this.atk;
 
         return this.name + ' uses his basic attack ! ' + opponent.name + ' now has ' + opponent.hp + ' hp.';
+    }
+
+    getImage(): string {
+      return environment.image_path + this.name + '.png';
     }
 
     gainXp(amount: number): void {
@@ -40,7 +42,7 @@ export class Pokemon implements PokemonInterface {
     }
 
     isKo(): boolean {
-        return this.hp === 0;
+        return this.hp <= 0;
     }
 
     lvlUp(): void {
