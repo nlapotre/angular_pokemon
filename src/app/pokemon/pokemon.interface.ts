@@ -6,4 +6,5 @@ export default interface PokemonInterface {
   isKo(): boolean;
   lvlUp(): void;
   isFastest(opponent: Pokemon): boolean;
+  getImage(back: boolean): string;
 }

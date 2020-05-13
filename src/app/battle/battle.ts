@@ -13,9 +13,6 @@ export class Battle {
     this.secondPokemon = secondPokemon;
   }
 
-  ngOnInit(): void {
-  }
-
   public getFastest(random = Math.random): Pokemon {
     if (this.firstPokemon.isFastest(this.secondPokemon)) {
       return this.firstPokemon;
@@ -33,7 +30,7 @@ export class Battle {
 
 
     setTimeout(() => {
-      if(!this.isPaused){
+      if (!this.isPaused){
         const attacker = this.getFastest();
         const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
         this.messageList.push(attacker.attack(defender));

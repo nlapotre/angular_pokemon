@@ -15,7 +15,7 @@ export class Pokemon implements PokemonInterface {
         this.name = name;
         this.speed = speed;
         this.atk = 5;
-        this.hp = 100;
+        this.hp = 20;
         this.hpMax = this.hp;
         this.lvl = 1;
         this.xp = 0;
@@ -29,8 +29,8 @@ export class Pokemon implements PokemonInterface {
         return this.name + ' uses his basic attack ! ' + opponent.name + ' now has ' + opponent.hp + ' hp.';
     }
 
-    getImage(): string {
-      return environment.image_path + this.name + '.png';
+  getImage(back: boolean): string {
+      return environment.image_path + this.name + (back ? '_dos' : '') + '.png';
     }
 
     gainXp(amount: number): void {

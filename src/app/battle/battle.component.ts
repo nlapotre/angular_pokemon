@@ -22,8 +22,8 @@ export class BattleComponent implements OnInit {
   }
 
   pauseGame(){
-    console.log(this.battle.isPaused)
+    console.log(this.battle.isPaused);
     this.battle.isPaused = !this.battle.isPaused;
-    console.log(this.battle.isPaused)
+    console.log(this.battle.isPaused);
   }
 }

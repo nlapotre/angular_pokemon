@@ -8,6 +8,7 @@ import {Pokemon} from './pokemon';
 })
 export class PokemonComponent implements OnInit {
   @Input() pokemon: Pokemon;
+  @Input() back: boolean;
   constructor() {
 
   }
