@@ -1,5 +1,6 @@
 import { Pokemon } from '../pokemon/pokemon';
 import { Injectable } from '@angular/core';
+import {PokemonService} from '../pokemon/pokemon.service';
 
 @Injectable()
 export class BattleService {
@@ -9,11 +10,15 @@ export class BattleService {
   public messageList: string[] = [];
   public isPaused = true;
 
-  
+  constructor(private pokemonService: PokemonService) {
+    this.firstPokemon = new Pokemon('tortank', 10);
+    this.secondPokemon = new Pokemon('magicarpe', 100);
+  }
+
   public getFastest(random = Math.random): Pokemon {
-    if (pokemonService.isFastest(this.firstPokemon, this.secondPokemon)) {
+    if (this.pokemonService.isFastest(this.firstPokemon, this.secondPokemon)) {
       return this.firstPokemon;
-    } else if (this.secondPokemon.isFastest(this.firstPokemon)) {
+    } else if (this.pokemonService.isFastest(this.secondPokemon, this.firstPokemon)) {
       return this.secondPokemon;
     } else {
       if (Math.round(random()) % 2 === 1) {
@@ -33,14 +38,14 @@ export class BattleService {
 
       const attacker = this.getFastest();
       const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
-      this.messageList.push(attacker.attack(defender));
-      if (defender.isKo()){
+      this.messageList.push(this.pokemonService.attack(attacker, defender));
+      if (this.pokemonService.isKo(defender)){
         this.displayWinner(attacker);
         return;
       }
 
-      this.messageList.push(defender.attack(attacker));
-      if (attacker.isKo()){
+      this.messageList.push(this.pokemonService.attack(defender, attacker));
+      if (this.pokemonService.isKo(attacker)){
         this.displayWinner(defender);
         return;
       }
@@ -55,13 +60,9 @@ export class BattleService {
     this.messageList.push(this.winner.name);
   }
 
-
-
   letTheBattleBeginAndFinish(): void{
     this.messageList.push('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begins !\n');
 
     this.round();
-
   }
-
 }

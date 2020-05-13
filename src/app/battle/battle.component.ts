@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pokemon } from '../pokemon/pokemon';
 import { BattleService } from './battle.service';
 
 @Component({
@@ -9,21 +8,14 @@ import { BattleService } from './battle.service';
 })
 
 export class BattleComponent implements OnInit {
-  @Input() battle;
-
-  constructor(){
-    const pikachu = new Pokemon('pikachu', 10);
-    const ronflex = new Pokemon('ronflex', 100);
-    this.battle = new BattleService(pikachu, ronflex);
+  constructor(public battleService: BattleService) {
   }
 
   ngOnInit(){
-    this.battle.letTheBattleBeginAndFinish();
+    this.battleService.letTheBattleBeginAndFinish();
   }
 
   pauseGame(){
-    console.log(this.battle.isPaused);
-    this.battle.isPaused = !this.battle.isPaused;
-    console.log(this.battle.isPaused);
+    this.battleService.isPaused = !this.battleService.isPaused;
   }
 }

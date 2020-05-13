@@ -10,8 +10,8 @@ import { PokemonService } from './pokemon.service';
 export class PokemonComponent implements OnInit {
   @Input() pokemon: Pokemon;
   @Input() back: boolean;
-  constructor(pokemonService : PokemonService) {
 
+  constructor(public pokemonService: PokemonService) {
   }
 
   ngOnInit(): void {

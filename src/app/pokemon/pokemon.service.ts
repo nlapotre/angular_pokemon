@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class PokemonService {
-    
+
     attack(attacker: Pokemon, opponent: Pokemon): string {
 
         opponent.hp -= attacker.atk;
@@ -13,7 +13,7 @@ export class PokemonService {
     }
 
     getImage(pokemon: Pokemon, back: boolean): string {
-        return environment.image_path + pokemon.name + (back ? '_dos' : '') + '.png';
+      return environment.image_path + (this.isKo(pokemon) ? 'ko' : pokemon.name + (back ? '_dos' : '')) + '.png';
     }
 
     gainXp(pokemon: Pokemon, amount: number): void {
@@ -28,15 +28,14 @@ export class PokemonService {
         return pokemon.hp <= 0;
     }
 
-    lvlUp(pokemon : Pokemon): void {
+    lvlUp(pokemon: Pokemon): void {
         pokemon.lvl += 1;
         pokemon.hp += 10;
         pokemon.xpMax *= 2;
         pokemon.speed += 3;
     }
 
-    public isFastest(attacker : Pokemon, opponent: Pokemon): boolean {
-        return attacker.speed > opponent.speed;
+    public isFastest(firstPokemon: Pokemon, secondPokemon: Pokemon): boolean {
+        return firstPokemon.speed > secondPokemon.speed;
     }
-
 }

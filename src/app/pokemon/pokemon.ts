@@ -1,4 +1,3 @@
-
 export class Pokemon {
     public atk;
     public lvl;
@@ -19,6 +18,4 @@ export class Pokemon {
         this.xp = 0;
         this.xpMax = 10;
     }
-
-    
 }

@@ -1,9 +1,9 @@
-<app-pokemon [pokemon]=battle.firstPokemon [back]=false></app-pokemon>
-<app-pokemon [pokemon]=battle.secondPokemon [back]=true></app-pokemon>
+<app-pokemon [pokemon]=battleService.firstPokemon [back]=false></app-pokemon>
+<app-pokemon [pokemon]=battleService.secondPokemon [back]=true></app-pokemon>
 
-<p>{{ battle.firstPokemon.name }} VS {{battle.secondPokemon.name}}</p>
-<button mat-button (click)="pauseGame()">{{ this.battle.isPaused == true ? 'START' : 'PAUSE' }}</button>
+<p>{{ battleService.firstPokemon.name }} VS {{ battleService.secondPokemon.name }}</p>
+<button mat-button (click)="pauseGame()">{{ battleService.isPaused == true ? 'START' : 'PAUSE' }}</button>
 
 <ul>
-  <li *ngFor="let message of battle.messageList">{{ message }}</li>
+  <li *ngFor="let message of battleService.messageList">{{ message }}</li>
 </ul>
