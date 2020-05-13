@@ -1,2 +1,2 @@
-<p>{{ pokemon.name }} - {{ pokemon.hp}}</p>
+<p>{{ pokemon.name }} - {{ pokemon.hp}} <span *ngFor="let pixel of [].constructor(pokemon.hp)">.</span></p>
 <img src="{{ pokemonService.getImage(pokemon, back) }}">
