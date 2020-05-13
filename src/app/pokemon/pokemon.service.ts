@@ -5,11 +5,9 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class PokemonService {
 
-    attack(attacker: Pokemon, opponent: Pokemon): string {
+    attack(attacker: Pokemon, opponent: Pokemon): void {
 
         opponent.hp -= attacker.atk;
-
-        return attacker.name + ' uses his basic attack ! ' + opponent.name + ' now has ' + opponent.hp + ' hp.';
     }
 
     getImage(pokemon: Pokemon, back: boolean): string {

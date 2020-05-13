@@ -1,17 +1,17 @@
 import { Pokemon } from '../pokemon/pokemon';
 import { Injectable } from '@angular/core';
 import {PokemonService} from '../pokemon/pokemon.service';
+import { BattleLogService } from '../battle-log/battle-log.service';
 
 @Injectable()
 export class BattleService {
   public firstPokemon: Pokemon;
   public secondPokemon: Pokemon;
   public winner = null;
-  public messageList: string[] = [];
   public isPaused = true;
   public isStarted = false;
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(private pokemonService: PokemonService, private battleLogService: BattleLogService) {
     this.firstPokemon = new Pokemon('tortank', 10);
     this.secondPokemon = new Pokemon('magicarpe', 100);
   }
@@ -30,7 +30,7 @@ export class BattleService {
   }
 
   round(): void{
-    
+
     setTimeout(() => {
       if (this.isPaused) {
         this.round();
@@ -39,13 +39,15 @@ export class BattleService {
 
       const attacker = this.getFastest();
       const defender = attacker === this.firstPokemon ? this.secondPokemon : this.firstPokemon;
-      this.messageList.push(this.pokemonService.attack(attacker, defender));
+      this.pokemonService.attack(attacker, defender);
+      this.battleLogService.pushAttackMessage(attacker, defender, attacker.atk);
       if (this.pokemonService.isKo(defender)){
         this.displayWinner(attacker);
         return;
       }
 
-      this.messageList.push(this.pokemonService.attack(defender, attacker));
+      this.pokemonService.attack(defender, attacker);
+      this.battleLogService.pushAttackMessage(defender, attacker, defender.atk);
       if (this.pokemonService.isKo(attacker)){
         this.displayWinner(defender);
         return;
@@ -57,12 +59,12 @@ export class BattleService {
 
   displayWinner(theWinner: Pokemon){
     this.winner = theWinner;
-    this.messageList.push('And the winner is ...');
-    this.messageList.push(this.winner.name);
+    this.battleLogService.pushMessage('And the winner is ...');
+    this.battleLogService.pushMessage(this.winner.name);
   }
 
   letTheBattleBeginAndFinish(): void{
-    this.messageList.push('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begins !\n');
+    this.battleLogService.pushMessage('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begins !\n');
 
     this.round();
   }
