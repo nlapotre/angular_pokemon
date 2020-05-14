@@ -1,10 +1,10 @@
 import { Pokemon } from './pokemon';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { PokemonAPI } from './pokemonAPI.interface';
+import { SpeciesAPI } from './speciesAPI.interface';
 
 @Injectable()
 export class PokemonService {
@@ -45,16 +45,31 @@ export class PokemonService {
   }
 
   getPokemon(name: string): Observable<Pokemon> {
+    let pokemonFromApi: PokemonAPI;
     return this.http.get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon/' + name)
       .pipe(
-        map(res => {
-          return new Pokemon(
-            name,
-            res.stats[0].base_stat,
-            res.sprites.back_default,
-            res.sprites.front_default
-          );
+        mergeMap(res => {
+          pokemonFromApi = res;
+          return this.getColor(res.species.url)
+        }),
+        map( species => {
+        return new Pokemon(
+          name,
+          pokemonFromApi.stats[0].base_stat,
+          pokemonFromApi.sprites.back_default,
+          pokemonFromApi.sprites.front_default,
+          species
+        ); 
         })
-      );
+      )
+  }
+
+  getColor(speciesURL: string): Observable<string>{
+    return this.http.get<SpeciesAPI>(speciesURL)
+      .pipe(
+        map(res => {
+          return res.color.name
+        })
+      )
   }
 }

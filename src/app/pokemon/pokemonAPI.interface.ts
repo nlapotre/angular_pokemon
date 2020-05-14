@@ -1,11 +1,14 @@
-export interface PokemonAPI{
+export interface PokemonAPI {
     stats: {
         0: {
-            base_stat;
+            base_stat: number;
         }
     },
     sprites: {
-        back_default,
-        front_default
+        back_default: string,
+        front_default: string
+    },
+    species: {
+        url: string
     }
 }

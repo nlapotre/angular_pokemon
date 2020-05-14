@@ -9,6 +9,10 @@ import { BattleService } from './battle/battle.service';
 import { BattleLogComponent } from './battle-log/battle-log.component';
 import { BattleLogService } from './battle-log/battle-log.service';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr-FR');
 
 @NgModule({
   declarations: [

@@ -6,7 +6,8 @@ export class BattleLogService{
     messageList: string[] = [];
 
     pushAttackMessage(attacker: Pokemon, defender: Pokemon, damages: number){
-        this.messageList.push(attacker.name + ' uses his basic attack ! It deals ' + damages + ' damages !');
+        console.log(attacker.color);
+        this.messageList.push('<font color="'+attacker.color+'">' + attacker.name + ' uses his basic attack ! It deals ' + damages + ' damages !</font>');
     }
 
     pushMessage(message: string): void{
