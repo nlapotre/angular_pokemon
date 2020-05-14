@@ -14,8 +14,18 @@ export class BattleService {
   public winner: Pokemon;
 
   constructor(private pokemonService: PokemonService, private battleLogService: BattleLogService) {
-    this.firstPokemon = new Pokemon('tortank', 10);
-    this.secondPokemon = new Pokemon('magicarpe', 100);
+    pokemonService.getPokemon("pikachu").subscribe(
+      pokemon => {
+        console.log(pokemon)
+        this.firstPokemon = pokemon;
+      }
+    );
+
+    pokemonService.getPokemon("pikachu").subscribe(
+      pokemon => {
+        this.secondPokemon = pokemon;
+      }
+    );
   }
 
   public getFastest(random = Math.random): Pokemon {

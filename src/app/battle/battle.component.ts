@@ -16,7 +16,7 @@ export class BattleComponent implements OnInit {
 
   ngOnInit(){
     this.battleService.letTheBattleBeginAndFinish().subscribe(
-      next => {},
+      () => {},
       error => console.error('onError: %s', error),
       () => this.battleService.displayWinner()
     );

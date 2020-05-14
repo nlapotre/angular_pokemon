@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import {map} from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PokemonService {
@@ -45,17 +44,13 @@ export class PokemonService {
   }
 
   getPokemon(name: string): Observable<Pokemon> {
-
-    return this.http.get<Pokemon>('https://pokeapi.co/api/v2/pokemon/' + name)
+    return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/' + name)
       .pipe(
         map(res => {
-          return res.json().data
-            .map((elt) => {
-              return new Pokemon(
-                name,
-                res.stats[0].stat.name
-              );
-          });
+          return new Pokemon(
+            name,
+            res.stats[0].base_stat
+            );
         })
       );
   }
