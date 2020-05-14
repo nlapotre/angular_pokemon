@@ -13,20 +13,7 @@ export class BattleService {
   public isStarted = false;
   public winner: Pokemon;
 
-  constructor(private pokemonService: PokemonService, private battleLogService: BattleLogService) {
-    pokemonService.getPokemon("pikachu").subscribe(
-      pokemon => {
-        console.log(pokemon)
-        this.firstPokemon = pokemon;
-      }
-    );
-
-    pokemonService.getPokemon("pikachu").subscribe(
-      pokemon => {
-        this.secondPokemon = pokemon;
-      }
-    );
-  }
+  constructor(private pokemonService: PokemonService, private battleLogService: BattleLogService) {}
 
   public getFastest(random = Math.random): Pokemon {
     if (this.pokemonService.isFastest(this.firstPokemon, this.secondPokemon)) {
@@ -59,7 +46,9 @@ export class BattleService {
     this.battleLogService.pushMessage(this.winner.name);
   }
 
-  letTheBattleBeginAndFinish(): Observable<boolean> {
+  letTheBattleBeginAndFinish(firstPokemon: Pokemon, secondPokemon: Pokemon): Observable<boolean> {
+    this.firstPokemon = firstPokemon;
+    this.secondPokemon = secondPokemon;
     this.battleLogService.pushMessage('The battle between ' + this.firstPokemon.name + ' and ' + this.secondPokemon.name + ' begins !\n');
 
     let attacker = this.getFastest();

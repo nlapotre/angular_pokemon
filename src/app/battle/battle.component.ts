@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BattleService } from './battle.service';
+import { forkJoin } from 'rxjs';
+import { PokemonService } from '../pokemon/pokemon.service';
 
 
 @Component({
@@ -11,14 +13,21 @@ import { BattleService } from './battle.service';
 export class BattleComponent implements OnInit {
   public dateStartBattle: number;
 
-  constructor(public battleService: BattleService) {
+  constructor(public battleService: BattleService, public pokemonService: PokemonService) {
   }
 
   ngOnInit(){
-    this.battleService.letTheBattleBeginAndFinish().subscribe(
-      () => {},
-      error => console.error('onError: %s', error),
-      () => this.battleService.displayWinner()
+    forkJoin(
+      this.pokemonService.getPokemon("pikachu"),
+      this.pokemonService.getPokemon("mew")
+    ).subscribe(
+      ([firstPokemon, secondPokemon]) => {
+        this.battleService.letTheBattleBeginAndFinish(firstPokemon, secondPokemon).subscribe(
+          () => {},
+          error => console.error('onError: %s', error),
+          () => this.battleService.displayWinner()
+        );
+      }
     );
   }
 

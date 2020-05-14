@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { PokemonAPI } from './pokemonAPI.interface';
 
 @Injectable()
 export class PokemonService {
@@ -17,7 +18,7 @@ export class PokemonService {
   }
 
   getImage(pokemon: Pokemon, back: boolean): string {
-    return environment.image_path + (this.isKo(pokemon) ? 'ko' : pokemon.name + (back ? '_dos' : '')) + '.png';
+    return (this.isKo(pokemon) ? 'assets/sprites/ko.png' : (back ? pokemon.imageBack : pokemon.imageFront));
   }
 
   gainXp(pokemon: Pokemon, amount: number): void {
@@ -44,13 +45,15 @@ export class PokemonService {
   }
 
   getPokemon(name: string): Observable<Pokemon> {
-    return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/' + name)
+    return this.http.get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon/' + name)
       .pipe(
         map(res => {
           return new Pokemon(
             name,
-            res.stats[0].base_stat
-            );
+            res.stats[0].base_stat,
+            res.sprites.back_default,
+            res.sprites.front_default
+          );
         })
       );
   }

@@ -7,10 +7,15 @@ export class Pokemon {
     public speed;
     public xp;
     public xpMax;
+    public imageFront;
+    public imageBack;
+    public color: string;
 
-    constructor(name: string, speed: number) {
+    constructor(name: string, speed: number, imageBack: string, imageFront: string) {
         this.name = name;
         this.speed = speed;
+        this.imageBack = imageBack;
+        this.imageFront = imageFront;
         this.atk = 5;
         this.hp = 20;
         this.hpMax = this.hp;
