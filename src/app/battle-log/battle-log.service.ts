@@ -12,6 +12,4 @@ export class BattleLogService{
     pushMessage(message: string): void{
         this.messageList.push(message);
     }
-
-    
 }

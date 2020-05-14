@@ -15,11 +15,15 @@ export class BattleComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.battleService.letTheBattleBeginAndFinish();
+    this.battleService.letTheBattleBeginAndFinish().subscribe(
+      next => {},
+      error => console.error('onError: %s', error),
+      () => this.battleService.displayWinner()
+    );
   }
 
   pauseGame(){
-    if( !this.battleService.isStarted ){
+    if (!this.battleService.isStarted){
       this.dateStartBattle = Date.now();
       this.battleService.isStarted = true;
     }
