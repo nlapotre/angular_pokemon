@@ -1,4 +1,4 @@
 <div class="pokemon-block">
-    <p>{{ pokemon.name }} - {{ pokemon.hp}} <span *ngFor="let pixel of [].constructor(pokemon.hp)">.</span></p>
+    <p>{{ pokemon?.name }} - {{ pokemon?.hp}} <span *ngFor="let pixel of [].constructor(pokemon?.hp)">.</span></p>
     <img src="{{ pokemonService.getImage(pokemon, back) }}">
 </div>

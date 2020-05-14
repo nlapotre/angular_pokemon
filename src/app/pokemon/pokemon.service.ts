@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { PokemonAPI } from './pokemonAPI.interface';
 import { SpeciesAPI } from './speciesAPI.interface';
+import { PokemonDisplay } from './pokemonDisplay.class';
 
 @Injectable()
 export class PokemonService {
@@ -18,6 +19,9 @@ export class PokemonService {
   }
 
   getImage(pokemon: Pokemon, back: boolean): string {
+    if(pokemon === undefined) {
+      return;
+    }
     return (this.isKo(pokemon) ? 'assets/sprites/ko.png' : (back ? pokemon.imageBack : pokemon.imageFront));
   }
 
@@ -72,4 +76,19 @@ export class PokemonService {
         })
       )
   }
+
+  getAllPokemon(): Observable<PokemonDisplay[]>{
+    return this.http.get<PokemonAPI[]>('https://pokeapi.co/api/v2/pokemon/')
+      .pipe(
+        map(listPokemon => {
+          return listPokemon.map((pokemon) => {
+            return {
+              name: pokemon.name,
+              sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.id+".png"
+            }
+          }
+          )
+        })
+      );
+  } 
 }

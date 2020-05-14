@@ -9,22 +9,28 @@ import { BattleService } from './battle/battle.service';
 import { BattleLogComponent } from './battle-log/battle-log.component';
 import { BattleLogService } from './battle-log/battle-log.service';
 import { HttpClientModule } from '@angular/common/http';
-import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { RouterModule, Routes } from '@angular/router';
 
-registerLocaleData(localeFr, 'fr-FR');
+const routes: Routes = [
+  { path: '', component: AppComponent },
+  { path: 'battle',  component: BattleComponent },
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonComponent,
     BattleComponent,
-    BattleLogComponent
+    BattleLogComponent,
+    PokemonListComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
+  exports: [RouterModule],
   providers: [
     PokemonService,
     BattleService,
