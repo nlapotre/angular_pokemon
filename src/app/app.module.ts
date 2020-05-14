@@ -8,6 +8,7 @@ import { PokemonService } from './pokemon/pokemon.service';
 import { BattleService } from './battle/battle.service';
 import { BattleLogComponent } from './battle-log/battle-log.component';
 import { BattleLogService } from './battle-log/battle-log.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BattleLogService } from './battle-log/battle-log.service';
     BattleLogComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     PokemonService,

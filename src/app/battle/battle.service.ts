@@ -31,8 +31,7 @@ export class BattleService {
     }
   }
 
-  rounds(attacker: Pokemon, defender: Pokemon): boolean{
-
+  rounds(attacker: Pokemon, defender: Pokemon): boolean {
 
       this.pokemonService.attack(attacker, defender);
       this.battleLogService.pushAttackMessage(attacker, defender, attacker.atk);
