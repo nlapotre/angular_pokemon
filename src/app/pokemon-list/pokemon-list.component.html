@@ -1,6 +1,7 @@
+<marquee><h1>Choose your fighters !</h1></marquee>
 <div class="container row">
 <div class="pokemonList col">
-    <label class="pokemonDisplay"  *ngFor="let pokemon of firstPokemonList" (click)="selectFirstPokemon(pokemon.name)">  
+    <label class="pokemonDisplay"  *ngFor="let pokemon of firstPokemonList" (click)="selectFirstPokemon(pokemon.name)">
         <input type="radio" name="pokemon1">
         <div class="infos">
             <img src="{{ pokemon.sprite }}">

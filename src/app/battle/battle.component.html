@@ -1,18 +1,21 @@
 <div id="page">
-<div id="container">
-  <div id="battle">
-    <div id="firstPokemon">
-      <app-pokemon [pokemon]=battleService.firstPokemon [back]=false></app-pokemon>
-    </div>
-    <div id="secondPokemon">
-      <app-pokemon [pokemon]=battleService.secondPokemon [back]=true></app-pokemon>
+  <div class="title">
+    <marquee><h1>POKEMON XTREM BATTLE SIMULATOR 3000</h1></marquee>
+  </div>
+  <div id="container">
+    <div id="battle">
+      <div id="firstPokemon">
+        <app-pokemon [pokemon]=battleService.firstPokemon [back]=false></app-pokemon>
+      </div>
+      <div id="secondPokemon">
+        <app-pokemon [pokemon]=battleService.secondPokemon [back]=true></app-pokemon>
+      </div>
     </div>
   </div>
-</div>
-<div>
+  <div>
     <p  style="text-align:center"><button mat-button (click)="pauseGame()">{{ battleService.isPaused == true ? 'START' : 'PAUSE' }}</button></p>
-<p>{{ dateStartBattle | date:'medium' }}</p>
-<app-battle-log></app-battle-log>
-</div>
+    <p>{{ dateStartBattle | date:'medium' }}</p>
+    <app-battle-log></app-battle-log>
+  </div>
 </div>
 
