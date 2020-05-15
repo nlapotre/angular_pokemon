@@ -5,7 +5,8 @@
 
 .pokemonList{
     display: inline-block;
-    width: 50%;
+    width: 45%;
+    border:solid;
 }
 
 .pokemonDisplay:hover{
