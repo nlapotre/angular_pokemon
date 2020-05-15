@@ -13,7 +13,7 @@ export class PokemonListComponent implements OnInit {
   secondPokemonList: PokemonDisplay[] = [];
   firstPokemonName: string;
   secondPokemonName: string;
-  
+
   constructor(private pokemonService: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
@@ -23,10 +23,10 @@ export class PokemonListComponent implements OnInit {
         this.secondPokemonList = res;
       },
       (error) => console.error('onError: %s', error),
-    )
+    );
   }
 
-  selectFirstPokemon(pokemonName):void{
+  selectFirstPokemon(pokemonName): void{
     this.firstPokemonName = pokemonName;
   }
 

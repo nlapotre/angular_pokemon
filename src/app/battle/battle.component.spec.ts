@@ -11,12 +11,12 @@ describe('BattleComponent', () => {
   let component: BattleComponent;
   let fixture: ComponentFixture<BattleComponent>;
   const pokemon =  new Pokemon(
-    "Salameche",
+    'Salameche',
     10,
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    "red"
-  )
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
+    'red'
+  );
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BattleComponent ],
@@ -25,28 +25,28 @@ describe('BattleComponent', () => {
       ],
       providers: [
         {
-          provide: PokemonService, 
+          provide: PokemonService,
           useValue:
             {
               getPokemon: () => of(pokemon)
             },
         },
         {
-          provide: BattleService, 
+          provide: BattleService,
           useValue: {
-            firstPokemon:pokemon,
-            secondPokemon:pokemon,
-            isPaused:true,
-            isStarted:false,
-            winner:null
+            firstPokemon: pokemon,
+            secondPokemon: pokemon,
+            isPaused: true,
+            isStarted: false,
+            winner: null
           }
         },
         {
-          provide: ActivatedRoute, 
+          provide: ActivatedRoute,
           useValue: {
             params: of({
-              name1: "Salameche",
-              name2: "Salameche"
+              name1: 'Salameche',
+              name2: 'Salameche'
             })
           }
         }

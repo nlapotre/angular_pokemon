@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BattleLogComponent } from './battle-log.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {BattleLogService} from './battle-log.service';
 
 describe('BattleLogComponent', () => {
   let component: BattleLogComponent;
@@ -8,7 +9,18 @@ describe('BattleLogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BattleLogComponent ]
+      declarations: [ BattleLogComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+      providers: [
+        {
+          provide: BattleLogService,
+          useValue: {
+            messageList: []
+          }
+        }
+      ]
     })
     .compileComponents();
   }));

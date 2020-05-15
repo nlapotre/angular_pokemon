@@ -12,5 +12,4 @@ export class BattleLogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

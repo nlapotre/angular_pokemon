@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {BattleService} from './battle.service';
 import {Pokemon} from '../pokemon/pokemon';
 import { PokemonService } from '../pokemon/pokemon.service';
@@ -9,7 +9,7 @@ describe('BattleService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BattleService,PokemonService,BattleLogService],
+      providers: [BattleService, PokemonService, BattleLogService],
       imports: [HttpClientTestingModule]
     }).compileComponents();
   });
@@ -65,4 +65,4 @@ describe('BattleService', () => {
       expect(battle.winner).toBe(pikachu);
     });
   });
-})
+});
