@@ -17,7 +17,7 @@ export class BattleComponent implements OnInit {
   constructor(public battleService: BattleService, public pokemonService: PokemonService, public route: ActivatedRoute) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.route.params
     .pipe(
       filter(params => params.name1),
@@ -30,6 +30,7 @@ export class BattleComponent implements OnInit {
     )
     .subscribe(
       ([firstPokemon, secondPokemon]) => {
+        console.log(firstPokemon, secondPokemon)
         this.battleService.letTheBattleBeginAndFinish(firstPokemon, secondPokemon).subscribe(
           () => {},
           error => console.error('onError: %s', error),
@@ -39,7 +40,7 @@ export class BattleComponent implements OnInit {
     );
   }
 
-  pauseGame(){
+  pauseGame(): void {
     if (!this.battleService.isStarted){
       this.dateStartBattle = Date.now();
       this.battleService.isStarted = true;

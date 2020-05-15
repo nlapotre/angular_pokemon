@@ -11,7 +11,6 @@ describe('PokemonService', () => {
 
   it('should return a pokemon', async(() => {
     const pokemonService = TestBed.get(PokemonService);
-    //pokemonService.http = TestBed.get(HttpClientTestingModule);
     const http = TestBed.get(HttpTestingController);
 
     pokemonService.getPokemon('pikachu').subscribe((pokemon: Pokemon) => {
@@ -26,8 +25,8 @@ describe('PokemonService', () => {
   describe('a pokemon', () => {
     it('should be KO when it has 0 hp', () => {
       const pokemonService = TestBed.get(PokemonService);
-      const salameche = new Pokemon('Salamèche', 100, '', '', '');
-      const magicarpe = new Pokemon('Magicarpe', 100, '', '', '');
+      const salameche = new Pokemon('Salamèche', 100, 10, 10, 10, '', '', '');
+      const magicarpe = new Pokemon('Magicarpe', 100, 60, 40, 50, '', '', '');
 
       pokemonService.attack(magicarpe, salameche);
       pokemonService.attack(magicarpe, salameche);
@@ -39,7 +38,7 @@ describe('PokemonService', () => {
 
     it('should gain hp when it lvlUp', () => {
       const pokemonService = TestBed.get(PokemonService);
-      const magicarpe = new Pokemon('Magicarpe', 100, '', '', '');
+      const magicarpe = new Pokemon('Magicarpe', 100, 50, 30, 20, '', '', '');
 
       pokemonService.lvlUp(magicarpe);
 

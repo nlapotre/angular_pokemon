@@ -15,9 +15,9 @@ describe('BattleService', () => {
   });
 
   describe('First attacker', () => {
-    it('should be the pokemon with the greatest speed if they\'re differents', () => {
-      const pikachu = new Pokemon('Pikachu', 100, '', '', '');
-      const salameche = new Pokemon('Salamèche', 70, '', '', '');
+    it('should retrun the first pokémon if its speed is higher', () => {
+      const pikachu = new Pokemon('Pikachu', 100, 50, 30, 20, '', '', '');
+      const salameche = new Pokemon('Salamèche', 70, 50, 30, 20, '', '', '');
 
       const battle = TestBed.get(BattleService);
       battle.firstPokemon = pikachu;
@@ -25,36 +25,47 @@ describe('BattleService', () => {
       expect(battle.getFastest()).toBe(pikachu);
     });
 
+    it('should retrun the second pokémon if its speed is higher', () => {
+      const ratata = new Pokemon('Ratata', 70, 50, 30, 20, '', '', '');
+      const metamorph = new Pokemon('Metamorph', 85, 50, 30, 20, '', '', '');
+
+      const battle = TestBed.get(BattleService);
+      battle.firstPokemon = ratata;
+      battle.secondPokemon = metamorph;
+      expect(battle.getFastest()).toBe(metamorph);
+    });
+
     it('should be random if the speeds are equals', () => {
-      const pikachu = new Pokemon('Pikachu', 100, '', '', '');
-      const salameche = new Pokemon('Salamèche', 100, '', '', '');
+      const pikachu = new Pokemon('Pikachu', 100, 50, 30, 20, '', '', '');
+      const salameche = new Pokemon('Salamèche', 100, 50, 30, 20, '', '', '');
 
       const battle = TestBed.get(BattleService);
       battle.firstPokemon = pikachu;
       battle.secondPokemon = salameche;
 
       expect(battle.getFastest(1)).toBe(pikachu);
+      expect(battle.getFastest(0)).toBe(salameche);
     });
   });
 
   describe('Attack ', () => {
     it('Attack should substract attacker attack from defender hp', () => {
-      const pikachu = new Pokemon('Pikachu', 100, '', '', '');
-      const salameche = new Pokemon('Salamèche', 100, '', '', '');
+      const pikachu = new Pokemon('Pikachu', 100, 50, 30, 20, '', '', '');
+      const salameche = new Pokemon('Salamèche', 100, 50, 30, 20, '', '', '');
 
       const battle = TestBed.get(BattleService);
       battle.firstPokemon = pikachu;
       battle.secondPokemon = salameche;
 
       battle.pokemonService.attack(pikachu, salameche);
-      expect(salameche.hp).toBe(15);
+      expect(salameche.hp).toBe(12);
     });
   });
 
   describe('The winner', () => {
     it('should be named when a pokemon have 0 hp', () => {
-      const pikachu = new Pokemon('Pikachu', 100, '', '', '');
-      const salameche = new Pokemon('Salamèche', 100, '', '', '');
+      const pikachu = new Pokemon('Pikachu', 100, 50, 30, 20, '', '', '');
+      const salameche = new Pokemon('Salamèche', 100, 50, 30, 20, '', '', '');
       salameche.hp = 0;
 
       const battle = TestBed.get(BattleService);

@@ -4,6 +4,15 @@ export interface PokemonAPI {
     stats: {
         0: {
             base_stat: number;
+        },
+        3: {
+            base_stat: number;
+        }
+        4: {
+            base_stat: number;
+        },
+        5: {
+            base_stat: number;
         }
     };
     sprites: {

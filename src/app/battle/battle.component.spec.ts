@@ -4,15 +4,19 @@ import {BattleService} from './battle.service';
 import {PokemonService} from '../pokemon/pokemon.service';
 import {ActivatedRoute} from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { of } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { Pokemon } from '../pokemon/pokemon';
 
 describe('BattleComponent', () => {
   let component: BattleComponent;
   let fixture: ComponentFixture<BattleComponent>;
+
   const pokemon =  new Pokemon(
     'Salameche',
     10,
+    50,
+    30,
+    20,
     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
     'red'
@@ -38,7 +42,8 @@ describe('BattleComponent', () => {
             secondPokemon: pokemon,
             isPaused: true,
             isStarted: false,
-            winner: null
+            winner: null,
+            letTheBattleBeginAndFinish: of(true),
           }
         },
         {
@@ -67,4 +72,10 @@ describe('BattleComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('should be paused and unpaused', () => {
+  //   expect(component.battleService.isPaused).toBe(true);
+  //   component.pauseGame();
+  //   expect(component.battleService.isPaused).toBe(false);
+  // });
 });

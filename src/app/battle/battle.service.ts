@@ -31,7 +31,7 @@ export class BattleService {
   rounds(attacker: Pokemon, defender: Pokemon): boolean {
 
       this.pokemonService.attack(attacker, defender);
-      this.battleLogService.pushAttackMessage(attacker, defender, attacker.atk);
+      this.battleLogService.pushAttackMessage(attacker, defender, this.pokemonService.getDamages(attacker, defender));
 
       if (this.pokemonService.isKo(defender)){
         this.winner = attacker;
