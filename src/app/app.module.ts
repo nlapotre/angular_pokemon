@@ -15,7 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', component: PokemonListComponent },
   { path: 'battle/:name1/:name2',  component: BattleComponent },
-]
+];
 
 @NgModule({
   declarations: [
@@ -38,4 +38,5 @@ const routes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

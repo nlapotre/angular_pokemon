@@ -2,8 +2,8 @@ import { Pokemon } from '../pokemon/pokemon';
 import { Injectable } from '@angular/core';
 import {PokemonService} from '../pokemon/pokemon.service';
 import { BattleLogService } from '../battle-log/battle-log.service';
-import {from, interval, Observable} from "rxjs";
-import {map, takeWhile} from "rxjs/operators";
+import {interval, Observable} from 'rxjs';
+import {map, takeWhile} from 'rxjs/operators';
 
 @Injectable()
 export class BattleService {
@@ -38,7 +38,6 @@ export class BattleService {
         return true;
       }
       return false;
-
   }
 
   displayWinner() {

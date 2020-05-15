@@ -6,13 +6,12 @@ import { map, mergeMap } from 'rxjs/operators';
 import { PokemonAPI } from './pokemonAPI.interface';
 import { SpeciesAPI } from './speciesAPI.interface';
 import { PokemonDisplay } from './pokemonDisplay.class';
-import { PokemonListAPI } from '../pokemon-list/pokemonListApi.interface';
+import { PokemonListAPI } from '../pokemon-list/pokemonListAPI.interface';
 
 @Injectable()
 export class PokemonService {
 
   constructor(private http: HttpClient) {
-
   }
 
   attack(attacker: Pokemon, opponent: Pokemon): void {
@@ -20,7 +19,7 @@ export class PokemonService {
   }
 
   getImage(pokemon: Pokemon, back: boolean): string {
-    if(pokemon === undefined) {
+    if (pokemon === undefined) {
       return;
     }
     return (this.isKo(pokemon) ? 'assets/sprites/ko.png' : (back ? pokemon.imageBack : pokemon.imageFront));
@@ -55,27 +54,27 @@ export class PokemonService {
       .pipe(
         mergeMap(res => {
           pokemonFromApi = res;
-          return this.getColor(res.species.url)
+          return this.getColor(res.species.url);
         }),
         map( species => {
-        return new Pokemon(
-          name,
-          pokemonFromApi.stats[0].base_stat,
-          pokemonFromApi.sprites.back_default,
-          pokemonFromApi.sprites.front_default,
-          species
-        ); 
+          return new Pokemon(
+            name,
+            pokemonFromApi.stats[0].base_stat,
+            pokemonFromApi.sprites.back_default,
+            pokemonFromApi.sprites.front_default,
+            species
+          );
         })
-      )
+      );
   }
 
   getColor(speciesURL: string): Observable<string>{
     return this.http.get<SpeciesAPI>(speciesURL)
       .pipe(
         map(res => {
-          return res.color.name
+          return res.color.name;
         })
-      )
+      );
   }
 
   getAllPokemon(): Observable<PokemonDisplay[]>{
@@ -85,10 +84,10 @@ export class PokemonService {
           return res.results.map((pokemon, index) => {
             return {
               name: pokemon.name,
-              sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+(index+1)+".png"
-            }
-          })
+              sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + (index + 1) + '.png'
+            };
+          });
         })
       );
-  } 
+  }
 }

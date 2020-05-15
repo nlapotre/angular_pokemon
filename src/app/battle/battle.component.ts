@@ -14,7 +14,7 @@ import { mergeMap, filter } from 'rxjs/operators';
 export class BattleComponent implements OnInit {
   public dateStartBattle: number;
 
-  constructor(public battleService: BattleService, public pokemonService: PokemonService, private route: ActivatedRoute) {
+  constructor(public battleService: BattleService, public pokemonService: PokemonService, public route: ActivatedRoute) {
   }
 
   ngOnInit(){
@@ -25,9 +25,9 @@ export class BattleComponent implements OnInit {
         return forkJoin(
           this.pokemonService.getPokemon(params.name1),
           this.pokemonService.getPokemon(params.name2)
-        )
+        );
       })
-    )   
+    )
     .subscribe(
       ([firstPokemon, secondPokemon]) => {
         this.battleService.letTheBattleBeginAndFinish(firstPokemon, secondPokemon).subscribe(
