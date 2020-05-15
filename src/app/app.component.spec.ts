@@ -1,5 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +9,13 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        RouterModule.forRoot([])
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
+      
     }).compileComponents();
   }));
 
@@ -19,13 +28,7 @@ describe('AppComponent', () => {
   it(`should have as title 'application'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('application');
+    expect(app.title).toEqual('POKEMON XTREM BATTLE SIMULATOR 3000');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('application app is running!');
-  });
 });
