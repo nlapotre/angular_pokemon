@@ -3,3 +3,8 @@ span {
   background-color: red;
 }
 
+p{
+  text-transform: capitalize;
+  color: white;
+  font-weight: bold;
+}

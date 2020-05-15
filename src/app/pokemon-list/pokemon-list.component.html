@@ -1,14 +1,20 @@
 <div class="pokemonList col">
-    <div class="pokemonDisplay"  *ngFor="let pokemon of firstPokemonList" (click)="selectFirstPokemon(pokemon.name)">
-        <img src="{{ pokemon.sprite }}">
-        <div>{{ pokemon.name }}</div>
-    </div>
+    <label class="pokemonDisplay"  *ngFor="let pokemon of firstPokemonList" (click)="selectFirstPokemon(pokemon.name)">  
+        <input type="radio" name="pokemon1">
+        <div class="infos">
+            <img src="{{ pokemon.sprite }}">
+            <div class="name">{{ pokemon.name }}</div>
+        </div>
+    </label>
 </div>
 <div class="pokemonList col">
-    <div class="pokemonDisplay"  *ngFor="let pokemon of secondPokemonList" (click)="selectSecondPokemon(pokemon.name)">
-        <img src="{{ pokemon.sprite }}">
-        <div>{{ pokemon.name }}</div>
-    </div>
+    <label class="pokemonDisplay"  *ngFor="let pokemon of secondPokemonList" (click)="selectSecondPokemon(pokemon.name)">
+        <input type="radio" name="pokemon2">
+        <div class="infos">
+            <img src="{{ pokemon.sprite }}">
+            <div class="name">{{ pokemon.name }}</div>
+        </div>
+    </label>
 </div>
 
 <button (click)="launchBattle()" [disabled]="checkIfPokemonSelected()">Lancer le combat</button>
