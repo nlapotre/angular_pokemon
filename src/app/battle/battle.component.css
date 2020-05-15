@@ -1,8 +1,6 @@
 #container {
   display: flex;
   justify-content: center;
-  background-image: url("/assets/pokemon_background.jpg");
-  background-size: 100%;
   
 }
 
@@ -20,4 +18,11 @@
 }
 #start-button {
   text-align: center;
+}
+#page {
+     background-image: url("/assets/pokemon_background.jpg");
+     background-size: cover;
+     height: 100%;
+     width: 100%;
+
 }
