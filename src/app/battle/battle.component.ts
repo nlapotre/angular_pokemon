@@ -30,6 +30,7 @@ export class BattleComponent implements OnInit {
     )
     .subscribe(
       ([firstPokemon, secondPokemon]) => {
+        console.log(firstPokemon, secondPokemon)
         this.battleService.letTheBattleBeginAndFinish(firstPokemon, secondPokemon).subscribe(
           () => {},
           error => console.error('onError: %s', error),

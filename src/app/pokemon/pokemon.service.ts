@@ -1,7 +1,7 @@
 import { Pokemon } from './pokemon';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, defer } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { PokemonAPI } from './pokemonAPI.interface';
 import { SpeciesAPI } from './speciesAPI.interface';
@@ -15,7 +15,11 @@ export class PokemonService {
   }
 
   attack(attacker: Pokemon, opponent: Pokemon): void {
-      opponent.hp -= attacker.atk;
+      opponent.hp -= this.getDamages(attacker, opponent);
+  }
+
+  getDamages(attacker: Pokemon, opponent: Pokemon): number{
+    return Math.floor(Math.floor(Math.floor(2*attacker.lvl/5+2)*attacker.atk*100/opponent.defense)/50)+2
   }
 
   getImage(pokemon: Pokemon, back: boolean): string {
@@ -56,13 +60,16 @@ export class PokemonService {
           pokemonFromApi = res;
           return this.getColor(res.species.url);
         }),
-        map( species => {
+        map( color => {
           return new Pokemon(
             name,
             pokemonFromApi.stats[0].base_stat,
+            pokemonFromApi.stats[4].base_stat,
+            pokemonFromApi.stats[3].base_stat,
+            pokemonFromApi.stats[5].base_stat,
             pokemonFromApi.sprites.back_default,
             pokemonFromApi.sprites.front_default,
-            species
+            color
           );
         })
       );
