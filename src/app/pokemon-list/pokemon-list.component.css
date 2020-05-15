@@ -6,6 +6,7 @@
 .pokemonList{
     display: inline-block;
     width: 45%;
+    margin-left : 2%;
     border:solid;
 }
 
