@@ -39,6 +39,6 @@ export class PokemonListComponent implements OnInit {
   }
 
   launchBattle(): void {
-    this.router.navigate(['/battle/'+this.firstPokemonName+'/'+this.secondPokemonName]);
+    this.router.navigate(['/battle/' + this.firstPokemonName + '/' + this.secondPokemonName]);
   }
 }
