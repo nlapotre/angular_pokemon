@@ -1,4 +1,23 @@
 #container {
   display: flex;
   justify-content: center;
+  background-image: url("/assets/pokemon_background.jpg");
+  background-size: 100%;
+  
+}
+
+#battle  {
+   background-image: url("/assets/battle_background.png");
+   background-size: cover;
+   width: 35% ;
+}
+#firstPokemon {
+  margin-left: 70%;
+}
+#secondPokemon {
+  margin-left: 15%;
+  margin-bottom: 5%;
+}
+#start-button {
+  text-align: center;
 }
