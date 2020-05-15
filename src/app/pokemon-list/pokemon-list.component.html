@@ -1,3 +1,4 @@
+<div class="container row">
 <div class="pokemonList col">
     <label class="pokemonDisplay"  *ngFor="let pokemon of firstPokemonList" (click)="selectFirstPokemon(pokemon.name)">  
         <input type="radio" name="pokemon1">
@@ -7,6 +8,7 @@
         </div>
     </label>
 </div>
+<div class="button col"><button (click)="launchBattle()" [disabled]="checkIfPokemonSelected()">Lancer le combat</button></div>
 <div class="pokemonList col">
     <label class="pokemonDisplay"  *ngFor="let pokemon of secondPokemonList" (click)="selectSecondPokemon(pokemon.name)">
         <input type="radio" name="pokemon2">
@@ -15,6 +17,4 @@
             <div class="name">{{ pokemon.name }}</div>
         </div>
     </label>
-</div>
-
-<p><button (click)="launchBattle()" [disabled]="checkIfPokemonSelected()">Lancer le combat</button></p>
+</div></div>

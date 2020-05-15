@@ -5,9 +5,10 @@
 
 .pokemonList{
     display: inline-block;
-    width: 45%;
-    margin-left : 2%;
+    width: 33%;
     border:solid;
+    border-width: 1px;
+    border-color: grey;
 }
 
 .pokemonDisplay:hover{
@@ -31,4 +32,14 @@ background: lightblue;
 .name {
     font-family: Arial;
     text-transform: capitalize;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.button{
+   margin-top: auto;
+   margin-bottom: auto;
 }
