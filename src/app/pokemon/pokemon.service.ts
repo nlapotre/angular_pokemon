@@ -6,6 +6,7 @@ import { map, mergeMap } from 'rxjs/operators';
 import { PokemonAPI } from './pokemonAPI.interface';
 import { SpeciesAPI } from './speciesAPI.interface';
 import { PokemonDisplay } from './pokemonDisplay.class';
+import { PokemonListAPI } from '../pokemon-list/pokemonListApi.interface';
 
 @Injectable()
 export class PokemonService {
@@ -78,16 +79,15 @@ export class PokemonService {
   }
 
   getAllPokemon(): Observable<PokemonDisplay[]>{
-    return this.http.get<PokemonAPI[]>('https://pokeapi.co/api/v2/pokemon/')
+    return this.http.get<PokemonListAPI>('https://pokeapi.co/api/v2/pokemon/')
       .pipe(
-        map(listPokemon => {
-          return listPokemon.map((pokemon) => {
+        map(res => {
+          return res.results.map((pokemon, index) => {
             return {
               name: pokemon.name,
-              sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.id+".png"
+              sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+(index+1)+".png"
             }
-          }
-          )
+          })
         })
       );
   } 

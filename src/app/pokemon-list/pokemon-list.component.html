@@ -1,1 +1,14 @@
-<p>pokemon-list works!</p>
+<div class="pokemonList col">
+    <div class="pokemonDisplay"  *ngFor="let pokemon of firstPokemonList" (click)="selectFirstPokemon(pokemon.name)">
+        <img src="{{ pokemon.sprite }}">
+        <div>{{ pokemon.name }}</div>
+    </div>
+</div>
+<div class="pokemonList col">
+    <div class="pokemonDisplay"  *ngFor="let pokemon of secondPokemonList" (click)="selectSecondPokemon(pokemon.name)">
+        <img src="{{ pokemon.sprite }}">
+        <div>{{ pokemon.name }}</div>
+    </div>
+</div>
+
+<button (click)="launchBattle()" [disabled]="checkIfPokemonSelected()">Lancer le combat</button>

@@ -1,0 +1,13 @@
+.pokemonDisplay{
+    display: inline-block;
+    text-align: center;
+}
+
+.pokemonList{
+    display: inline-block;
+    width: 50%;
+}
+
+.pokemonDisplay:hover{
+    background: lightgrey;
+}

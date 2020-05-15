@@ -13,8 +13,8 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'battle',  component: BattleComponent },
+  { path: '', component: PokemonListComponent },
+  { path: 'battle/:name1/:name2',  component: BattleComponent },
 ]
 
 @NgModule({

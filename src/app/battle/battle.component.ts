@@ -18,13 +18,10 @@ export class BattleComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.route.queryParams
+    this.route.params
     .pipe(
       filter(params => params.name1),
       mergeMap((params) => {
-        console.log(this.route.snapshot);
-        console.log(params.name1);
-        console.log(params.name2);
         return forkJoin(
           this.pokemonService.getPokemon(params.name1),
           this.pokemonService.getPokemon(params.name2)
