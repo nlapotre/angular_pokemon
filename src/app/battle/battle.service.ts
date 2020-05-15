@@ -15,13 +15,13 @@ export class BattleService {
 
   constructor(private pokemonService: PokemonService, private battleLogService: BattleLogService) {}
 
-  public getFastest(random = Math.random): Pokemon {
+  public getFastest(random = Math.random()): Pokemon {
     if (this.pokemonService.isFastest(this.firstPokemon, this.secondPokemon)) {
       return this.firstPokemon;
     } else if (this.pokemonService.isFastest(this.secondPokemon, this.firstPokemon)) {
       return this.secondPokemon;
     } else {
-      if (Math.round(random()) % 2 === 1) {
+      if (Math.round(random) % 2 === 1) {
         return this.firstPokemon;
       }
       return this.secondPokemon;

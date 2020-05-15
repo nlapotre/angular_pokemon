@@ -11,7 +11,7 @@ describe('PokemonService', () => {
 
   it('should return a pokemon', async(() => {
     const pokemonService = TestBed.get(PokemonService);
-    pokemonService.http = TestBed.get(HttpClientTestingModule);
+    //pokemonService.http = TestBed.get(HttpClientTestingModule);
     const http = TestBed.get(HttpTestingController);
 
     pokemonService.getPokemon('pikachu').subscribe((pokemon: Pokemon) => {
@@ -21,29 +21,29 @@ describe('PokemonService', () => {
 
     http.expectOne('https://pokeapi.co/api/v2/pokemon/pikachu');
   }));
-});
 
 
-describe('a pokemon', () => {
-  it('should be KO when it has 0 hp', () => {
-    const pokemonService = TestBed.get(PokemonService);
-    const salameche = new Pokemon('Salamèche', 100, '', '', '');
-    const magicarpe = new Pokemon('Magicarpe', 100, '', '', '');
+  describe('a pokemon', () => {
+    it('should be KO when it has 0 hp', () => {
+      const pokemonService = TestBed.get(PokemonService);
+      const salameche = new Pokemon('Salamèche', 100, '', '', '');
+      const magicarpe = new Pokemon('Magicarpe', 100, '', '', '');
 
-    pokemonService.attack(magicarpe, salameche);
-    pokemonService.attack(magicarpe, salameche);
-    pokemonService.attack(magicarpe, salameche);
-    pokemonService.attack(magicarpe, salameche);
+      pokemonService.attack(magicarpe, salameche);
+      pokemonService.attack(magicarpe, salameche);
+      pokemonService.attack(magicarpe, salameche);
+      pokemonService.attack(magicarpe, salameche);
 
-    expect(pokemonService.isKo(salameche)).toBe(true);
-  });
+      expect(pokemonService.isKo(salameche)).toBe(true);
+    });
 
-  it('should gain hp when it lvlUp', () => {
-    const pokemonService = TestBed.get(PokemonService);
-    const magicarpe = new Pokemon('Magicarpe', 100, '', '', '');
+    it('should gain hp when it lvlUp', () => {
+      const pokemonService = TestBed.get(PokemonService);
+      const magicarpe = new Pokemon('Magicarpe', 100, '', '', '');
 
-    pokemonService.lvlUp(magicarpe);
+      pokemonService.lvlUp(magicarpe);
 
-    expect(magicarpe.hp).toBe(30);
+      expect(magicarpe.hp).toBe(30);
+    });
   });
 });
